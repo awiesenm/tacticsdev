@@ -10,41 +10,41 @@ public class UnitStateMachine : MonoBehaviour
         CHURNING,
         READY,
         SELECTED,
-        DISPLAYINGMOVES,
+        DISPLAYINGMOVERANGE,
         MOVING,
         MOVED,
-        DISPLAYINGACTIONS,
-        ACTING
+        DISPLAYINGACTRANGE,
+        ACTING,
+        ACTED
     }
 
     public float turnTimer = 0;
     protected BattleStateMachine BSM;
     public TurnState currentState;
 
-
     // Use this for initialization
-    void Start () {
+    void Start()
+    { }
+
+    // Update is called once per frame
+    void Update()
+    {
+
     }
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
     public void ProcessTurnTimer()
     {
-        if (turnTimer >= 100f)
+        if (turnTimer == 100f)
         {
-            turnTimer = 100f;
             BSM.readyQueue.Enqueue(transform.gameObject);
             currentState = TurnState.READY;
-        } else
+        }
+        else
         {
             turnTimer += GetComponent<UnitStats>().speed;
+            turnTimer = Mathf.Clamp(turnTimer, 0, 100);
         }
     }
-
-
 
     public void EndTurn()
     {

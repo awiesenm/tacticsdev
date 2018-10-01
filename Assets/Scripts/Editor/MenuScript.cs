@@ -16,6 +16,7 @@ public class MenuScript
             t.GetComponent<Renderer>().material = material;
         }
     }
+
     [MenuItem("Tools/Assign Tile Script")]
     public static void AssignTileScript()
     {
@@ -26,4 +27,18 @@ public class MenuScript
             t.AddComponent<Tile>();
         }
     }
+    
+    /*
+    [MenuItem("Tools/Destroy Tile Script")]
+    public static void DestroyTileScript()
+    {
+        GameObject[] tiles = GameObject.FindGameObjectsWithTag("Tile");
+
+        foreach (GameObject t in tiles)
+        {
+            //Destroy(t.GetComponent<Tile>());
+            Component.DestroyImmediate(t.GetComponent<Tile>());
+        }
+    }
+    */
 }

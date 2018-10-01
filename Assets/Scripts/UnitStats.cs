@@ -19,7 +19,8 @@ public class UnitStats : MonoBehaviour
     public int magicalAttack;
     public int speed;
 
-    public int atkRange;
+    public int atkRangeMax;
+    public int atkRangeMin; //0 for self-target
     public int atkVert;
 
     public int move;

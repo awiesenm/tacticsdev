@@ -2,22 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerStateMachine : UnitStateMachine {
+public class PlayerStateMachine : UnitStateMachine
+{
 
     private PlayerMove PM;
+    private PlayerAct PA;
 
-	// Use this for initialization
-	void Start ()
+    // Use this for initialization
+    void Start()
     {
         BSM = GameObject.Find("BattleManager").GetComponent<BattleStateMachine>();
         currentState = TurnState.CHURNING;
         turnTimer = Random.Range(0f, 20f);
         PM = GetComponent<PlayerMove>();
-		
-	}
-	
-	// Update is called once per frame
-	void Update ()
+        PA = GetComponent<PlayerAct>();
+
+    }
+
+    // Update is called once per frame
+    void Update()
     {
         //Debug.Log("Current state for " + transform.name + " is " + currentState);
         switch (currentState)
@@ -38,18 +41,15 @@ public class PlayerStateMachine : UnitStateMachine {
                 {
                     UIManager.UpdateUnitPanel(transform.gameObject);
                     UIManager.ShowCanvasGroup(GameObject.Find("MainActionPanel").GetComponent<CanvasGroup>());
-                    
+
                     //await button press
 
                     break;
                 }
-            case (TurnState.DISPLAYINGMOVES):
+            case (TurnState.DISPLAYINGMOVERANGE):
                 {
-                    if (PM.showMoves == false)
+                    if (PM.showRange == false)
                     {
-                        if (PM.moveAvailable == false)
-                        {
-                        }
                         currentState = TurnState.SELECTED;
                     }
                     break;
@@ -59,11 +59,30 @@ public class PlayerStateMachine : UnitStateMachine {
 
                     break;
                 }
+            case (TurnState.DISPLAYINGACTRANGE):
+                {
+                    if (PA.showRange == false)
+                    {
+                        currentState = TurnState.SELECTED;
+                    }
+                    break;
+                }
+            case (TurnState.ACTING):
+                {
+
+                    break;
+                }
+            case (TurnState.ACTED):
+                {
+                    EndTurn();
+                    break;
+                }
         }
-	}
+    }
 
     void InitTurn()
     {
-        PM.showMoves = false;
+        PM.showRange = false;
+        PA.showRange = false;
     }
 }

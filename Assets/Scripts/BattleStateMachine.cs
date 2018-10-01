@@ -54,7 +54,7 @@ public class BattleStateMachine : MonoBehaviour
                 //Debug.Log(readyQueue.Count);
                 activeUnit = readyQueue.Peek();
                 //player only need to add NPC
-                activeUnit.GetComponent<PlayerMove>().GetCurrentTile();
+                activeUnit.GetComponent<PlayerMove>().HighlightUnitTile();
                 activeUnit.GetComponent<PlayerStateMachine>().currentState = PlayerStateMachine.TurnState.SELECTED;
 
                 battleState = BattleState.RECEIVINGINPUT;

@@ -15,7 +15,7 @@ public class NPCMove : TacticsMove
 	void Update () {
         Debug.DrawRay(transform.position, transform.forward);
 
-        if (!showMoves)
+        if (!showRange)
         {
             return;
         }
@@ -35,7 +35,7 @@ public class NPCMove : TacticsMove
 
     void CalculatePath()
     {
-        Tile targetTile = GetTargetTile(target);
+        Tile targetTile = GetUnitTile(target);
         FindPath(targetTile);
     }
 

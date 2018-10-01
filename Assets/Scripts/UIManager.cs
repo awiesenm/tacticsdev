@@ -3,24 +3,31 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIManager : MonoBehaviour {
+public class UIManager : MonoBehaviour
+{
 
     GameObject activeUnit;
-
 
     void Start()
     {
         ResetPanels();
     }
 
-
     // Buttons
-    public void DisplayMoves()
+    public void DisplayMoveRange()
     {
         HideCanvasGroup(GameObject.Find("MainActionPanel").GetComponent<CanvasGroup>());
         activeUnit = GameObject.Find("BattleManager").GetComponent<BattleStateMachine>().activeUnit;
-        activeUnit.GetComponent<PlayerMove>().showMoves = true;
-        activeUnit.GetComponent<PlayerStateMachine>().currentState = PlayerStateMachine.TurnState.DISPLAYINGMOVES;
+        activeUnit.GetComponent<PlayerMove>().showRange = true;
+        activeUnit.GetComponent<PlayerStateMachine>().currentState = PlayerStateMachine.TurnState.DISPLAYINGMOVERANGE;
+    }
+
+    public void DisplayActionRange()
+    {
+        HideCanvasGroup(GameObject.Find("MainActionPanel").GetComponent<CanvasGroup>());
+        activeUnit = GameObject.Find("BattleManager").GetComponent<BattleStateMachine>().activeUnit;
+        activeUnit.GetComponent<TacticsAct>().showRange = true;
+        activeUnit.GetComponent<PlayerStateMachine>().currentState = PlayerStateMachine.TurnState.DISPLAYINGACTRANGE;
     }
 
     public void Wait()
@@ -28,8 +35,6 @@ public class UIManager : MonoBehaviour {
         activeUnit = GameObject.Find("BattleManager").GetComponent<BattleStateMachine>().activeUnit;
         activeUnit.GetComponent<PlayerStateMachine>().EndTurn();
     }
-
-
 
     //Helper
     static public void ResetPanels()

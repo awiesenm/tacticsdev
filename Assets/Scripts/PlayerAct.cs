@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMove : TacticsMove
+public class PlayerAct : TacticsAct
 {
     void Start()
     {
@@ -17,7 +17,7 @@ public class PlayerMove : TacticsMove
             return;
         }
 
-        if (!moving)
+        if (!acting)
         {
             FindSelectableTiles();
             // Mouseclick -- need to repurpose to controller
@@ -27,7 +27,7 @@ public class PlayerMove : TacticsMove
         }
         else
         {
-            Move();
+            Act();
         }
     }
     
@@ -47,7 +47,7 @@ public class PlayerMove : TacticsMove
 
                     if (t.selectable)
                     {
-                        MoveToTile(t);
+                        ActOnTarget(t);
                     }
                 }
             }

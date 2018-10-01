@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TacticsMove : MonoBehaviour
 {
-    public bool showMoves = false;
+    public bool showRange = false;
 
     List<Tile> selectableTiles = new List<Tile>();
     GameObject[] tiles;
@@ -41,9 +41,9 @@ public class TacticsMove : MonoBehaviour
         halfHeight = GetComponent<Collider>().bounds.extents.y;
     }
 
-    public void GetCurrentTile()
+    public void HighlightUnitTile()
     {
-        currentTile = GetTargetTile(gameObject);
+        currentTile = GetUnitTile(gameObject);
         currentTile.current = true;
     }
 
@@ -52,7 +52,7 @@ public class TacticsMove : MonoBehaviour
         currentTile.current = false;
     }
 
-    public Tile GetTargetTile(GameObject target)
+    public Tile GetUnitTile(GameObject target)
     {
         RaycastHit hit;
         Tile tile = null;
@@ -65,7 +65,7 @@ public class TacticsMove : MonoBehaviour
         return tile;
     }
 
-    public void ComputeAdjacencyLists(float jumpHeigh, Tile target)
+    public void ComputeAdjacencyLists(float jump, Tile target)
     {
         foreach (GameObject tile in tiles)
         {
@@ -77,7 +77,7 @@ public class TacticsMove : MonoBehaviour
     public void FindSelectableTiles()
     {
         ComputeAdjacencyLists(gameObject.GetComponent<UnitStats>().jump, null);
-        GetCurrentTile();
+        HighlightUnitTile();
 
         Queue<Tile> process = new Queue<Tile>();
 
@@ -179,7 +179,7 @@ public class TacticsMove : MonoBehaviour
             tile.Reset();
         }
 
-        GetCurrentTile();
+        HighlightUnitTile();
 
         selectableTiles.Clear();
     }
@@ -197,6 +197,7 @@ public class TacticsMove : MonoBehaviour
 
     void Jump(Vector3 target)
     {
+        //jump case set in PrepareJump() and triggered on second Jump() call -- NOT ACCURATE find real functionality*
         if (fallingDown)
         {
             FallDownward(target);
@@ -336,7 +337,7 @@ public class TacticsMove : MonoBehaviour
     protected void FindPath(Tile target)
     {
         ComputeAdjacencyLists(gameObject.GetComponent<UnitStats>().jump, target);
-        GetCurrentTile();
+        HighlightUnitTile();
 
         //todo: change to priority queue for efficiency
         List<Tile> openList = new List<Tile>();
@@ -399,14 +400,14 @@ public class TacticsMove : MonoBehaviour
 
     public void ResetMoveAvailability()
     {
-        showMoves = false;
+        showRange = false;
         moving = false;
         moveAvailable = true;
     }
     
     public void EndMovement()
     {
-        showMoves = false;
+        showRange = false;
         moving = false;
         moveAvailable = false;
         UIManager.DeactivateCanvasGroup(GameObject.Find("MoveButton").GetComponent<CanvasGroup>());

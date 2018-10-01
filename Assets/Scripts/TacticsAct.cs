@@ -10,26 +10,30 @@ public class TacticsAct : MonoBehaviour
     GameObject[] tiles;
 
     Tile currentTile;
+    Tile targetTile;
 
     public bool acting = false;
     public bool actAvailable = true;
 
-    public float atkVert = 2;
+    float atkRangeMax;
+    float atkRangeMin;
+    float atkVert;
 
     // Center of the object --may need to adjust when using sprites. 
-    float halfHeight = 0;
-
-    public Tile actualTargetTile;
+    //float halfHeight = 0;
 
     protected void Init()
     {
         tiles = GameObject.FindGameObjectsWithTag("Tile");
-        halfHeight = GetComponent<Collider>().bounds.extents.y;
+        atkRangeMax = gameObject.GetComponent<UnitStats>().atkRangeMax;
+        atkRangeMin = gameObject.GetComponent<UnitStats>().atkRangeMin;
+        atkVert = gameObject.GetComponent<UnitStats>().atkVert;
+        //halfHeight = GetComponent<Collider>().bounds.extents.y;
     }
 
-    public void GetCurrentTile()
+    public void HighlightUnitTile()
     {
-        currentTile = GetTargetTile(gameObject);
+        currentTile = GetUnitTile(gameObject);
         currentTile.current = true;
     }
 
@@ -39,7 +43,7 @@ public class TacticsAct : MonoBehaviour
         currentTile.current = false;
     }
 
-    public Tile GetTargetTile(GameObject target)
+    public Tile GetUnitTile(GameObject target)
     {
         RaycastHit hit;
         Tile tile = null;
@@ -52,82 +56,80 @@ public class TacticsAct : MonoBehaviour
         return tile;
     }
 
-    public void ComputeAdjacencyLists(float jumpHeigh, Tile target)
+    public void ActOnTarget(Tile tile)
     {
-        foreach (GameObject tile in tiles)
+        targetTile = tile;
+        targetTile.target = true;
+        acting = true;
+    }
+
+    public void Act()
+    {
+        RaycastHit hit;
+
+        //find object above tile
+        if (Physics.Raycast(targetTile.transform.position, Vector3.up, out hit, 1))
         {
-            Tile t = tile.GetComponent<Tile>();
-            t.FindNeighbors(gameObject.GetComponent<UnitStats>().jump, target);
+            GameObject target = hit.transform.gameObject;
+            if (target.GetComponent<UnitStats>())
+            {
+                float curHP = target.GetComponent<UnitStats>().curHP;
+                float maxHP = target.GetComponent<UnitStats>().maxHP;
+                float physicalAttack = GetComponent<UnitStats>().physicalAttack;
+
+                curHP -= physicalAttack;
+
+                if (curHP <= 0){
+                    curHP = 0;
+                    print(target.GetComponent<UnitStats>().name + " has fallen on the battlefield.");
+                }
+
+                if (curHP >= maxHP) {
+                    curHP = maxHP;
+                    print(target.GetComponent<UnitStats>().name + " was overcured.");
+
+                }
+
+                target.GetComponent<UnitStats>().curHP = curHP;
+                
+            }
+
         }
+        else
+        {
+            //no object above tile -- or invalid?
+            Debug.Log(hit);
+        }
+
+        GetComponent<PlayerStateMachine>().currentState = UnitStateMachine.TurnState.ACTED;
+        RemoveSelectableTiles();
+        EndAction();
+        
+        //EndTurn();
+
     }
 
     public void FindSelectableTiles()
     {
-        ComputeAdjacencyLists(gameObject.GetComponent<UnitStats>().atkVert, null);
-        GetCurrentTile();
-
-        Queue<Tile> process = new Queue<Tile>();
-
-        process.Enqueue(currentTile);
-        currentTile.visited = true;
-
-        // Need to account for fully blocked unit
-        while (process.Count > 0)
+        Tile unitTile = GetUnitTile(gameObject);
+        foreach (GameObject tile in tiles)
         {
-            Tile t = process.Dequeue();
+            Tile t = tile.GetComponent<Tile>();
 
-            selectableTiles.Add(t);
-            t.selectable = true;
+            float deltaX = Mathf.Abs(unitTile.transform.position.x - t.transform.position.x);
+            float deltaY = Mathf.Abs(unitTile.transform.position.y - t.transform.position.y);
+            float deltaZ = Mathf.Abs(unitTile.transform.position.z - t.transform.position.z);
 
-            if (t.distance < gameObject.GetComponent<UnitStats>().atkRange)
+            float distance = deltaX + deltaZ;
+            float height = deltaY;
+
+            bool isValidTarget = distance >= atkRangeMin && distance <= atkRangeMax && height <= atkVert;
+
+            if (isValidTarget)
             {
-                foreach (Tile tile in t.adjacencyList)
-                {
-                    if (!tile.visited)
-                    {
-                        tile.parent = t;
-                        tile.visited = true;
-                        tile.distance = 1 + t.distance;
-                        process.Enqueue(tile);
-                    }
-                }
+                selectableTiles.Add(t);
+                t.selectable = true;
             }
-        }
-    }
-
-    public void ActOnTargetTile(Tile tile)
-    {
-        path.Clear();
-        tile.target = true;
-        acting = true;
-
-        Tile next = tile;
-        while (next != null)
-        {
-            path.Push(next);
-            next = next.parent;
-        }
-    }
-
-    public void Move()
-    {
-        if (path.Count > 0)
-        {
-            Tile t = path.Peek();
-            Vector3 target = t.transform.position;
-
-            //Calculate the unit's position on top of the target tile
-            target.y += halfHeight + t.GetComponent<Collider>().bounds.extents.y;
-
-            //Tile center reached
-            transform.position = target;
-            path.Pop();
-        }
-        else
-        {
-            GetComponent<PlayerStateMachine>().currentState = UnitStateMachine.TurnState.MOVED;
-            RemoveSelectableTiles();
-            EndMovement();
         }
     }
 
@@ -143,128 +145,19 @@ public class TacticsAct : MonoBehaviour
             tile.Reset();
         }
 
-        GetCurrentTile();
+        HighlightUnitTile();
 
         selectableTiles.Clear();
     }
 
-
-    //todo: remove FindLowestF() once priority queue is implemented
-    protected Tile FindLowestF(List<Tile> list)
-    {
-        Tile lowest = list[0];
-
-        foreach (Tile t in list)
-        {
-            if (t.f < lowest.f)
-            {
-                lowest = t;
-            }
-        }
-
-        list.Remove(lowest);
-
-        return lowest;
-    }
-
-    protected Tile FindEndTile(Tile t)
-    {
-        Stack<Tile> tempPath = new Stack<Tile>();
-
-        Tile next = t.parent;
-        while (next != null)
-        {
-            tempPath.Push(next);
-            next = next.parent;
-        }
-
-        if (tempPath.Count <= gameObject.GetComponent<UnitStats>().move)
-        {
-            return t.parent;
-        }
-
-        Tile endTile = null;
-        for (int i = 0; i <= gameObject.GetComponent<UnitStats>().move; i++)
-        {
-            endTile = tempPath.Pop();
-        }
-
-        return endTile;
-
-    }
-
-    protected void FindPath(Tile target)
-    {
-        ComputeAdjacencyLists(gameObject.GetComponent<UnitStats>().jump, target);
-        GetCurrentTile();
-
-        //todo: change to priority queue for efficiency
-        List<Tile> openList = new List<Tile>();
-        List<Tile> closedList = new List<Tile>();
-
-        openList.Add(currentTile);
-        // change to Vector3.SqrMagnitude see NPCMove FindNearestTarget()
-        currentTile.h = Vector3.Distance(currentTile.transform.position, target.transform.position);
-        currentTile.f = currentTile.h;
-
-        while (openList.Count > 0)
-        {
-            Tile t = FindLowestF(openList);
-
-            closedList.Add(t);
-
-            if (t == target)
-            {
-                actualTargetTile = FindEndTile(t);
-                ActOnTargetTile(actualTargetTile);
-                return;
-            }
-
-            foreach (Tile tile in t.adjacencyList)
-            {
-                if (closedList.Contains(tile))
-                {
-                    //Do nothing, already processed
-                }
-                else if (openList.Contains(tile))
-                {
-                    float tempG = t.g + Vector3.Distance(tile.transform.position, t.transform.position);
-
-                    if (tempG < tile.g)
-                    {
-                        tile.parent = t;
-
-                        tile.g = tempG;
-                        tile.f = tile.g + tile.h;
-                    }
-                }
-                else
-                {
-                    tile.parent = t;
-
-                    //may need to change to Vector3.SqrMagnitude
-                    tile.g = t.g + Vector3.Distance(tile.transform.position, t.transform.position);
-                    tile.h = Vector3.Distance(tile.transform.position, target.transform.position);
-                    tile.f = tile.g + tile.h;
-
-                    openList.Add(tile);
-                }
-            }
-        }
-
-        //todo: IMPORTANT: no path to target? Unity Tutorial - Tactics Movement Part 6 at 17:50
-        Debug.Log("Path not found");
-
-    }
-
-    public void ResetMoveAvailability()
+    public void ResetActAvailability()
     {
         showRange = false;
         acting = false;
         actAvailable = true;
     }
 
-    public void EndMovement()
+    public void EndAction()
     {
         showRange = false;
         acting = false;

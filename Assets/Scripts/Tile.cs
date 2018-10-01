@@ -25,7 +25,6 @@ public class Tile : MonoBehaviour
     // h is cost from processed tile to destination
     public float h = 0;
 
-
     // Use this for initialization
     void Start()
     {
@@ -74,20 +73,20 @@ public class Tile : MonoBehaviour
         current = false;
     }
 
-    public void FindNeighbors(float jumpHeight, Tile target)
+    public void FindNeighbors(float vertRange, Tile target)
     {
         Reset();
 
-        CheckTile(Vector3.forward, jumpHeight, target);
-        CheckTile(-Vector3.forward, jumpHeight, target);
-        CheckTile(Vector3.right, jumpHeight, target);
-        CheckTile(-Vector3.right, jumpHeight, target);
+        CheckTile(Vector3.forward, vertRange, target);
+        CheckTile(-Vector3.forward, vertRange, target);
+        CheckTile(Vector3.right, vertRange, target);
+        CheckTile(-Vector3.right, vertRange, target);
     }
 
-    public void CheckTile(Vector3 direction, float jumpHeight, Tile target)
+    public void CheckTile(Vector3 direction, float vertRange, Tile target)
     {
         // jumpHeight calculation for collision needs double checked
-        Vector3 halfExtents = new Vector3(0.25f, (1 + jumpHeight) / 2.0f, 0.25f);
+        Vector3 halfExtents = new Vector3(0.25f, (1 + vertRange) / 2.0f, 0.25f);
 
         Collider[] colliders = Physics.OverlapBox(transform.position + direction, halfExtents);
 
