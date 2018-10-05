@@ -7,7 +7,11 @@ using UnityEngine;
 public class UnitStats : MonoBehaviour
 {
     public string unitName;
+    public int level;
+    public int EXP;
+    public int JP;
 
+    [Header("Main Unit Stats")]
     public float maxHP;
     public float curHP;
 
@@ -19,12 +23,14 @@ public class UnitStats : MonoBehaviour
     public int magicalAttack;
     public int speed;
 
+    [Header("Weapon Stats")]
     public int atkRangeMax;
     public int atkRangeMin; //0 for self-target
     public int atkVert;
 
-    public int move;
-    public int jump;
+    [Header("Movement")]
+    public float move;
+    public float jump;
 
     /*
     public enum Affinity
@@ -37,5 +43,4 @@ public class UnitStats : MonoBehaviour
     }
     */
 
-	
 }

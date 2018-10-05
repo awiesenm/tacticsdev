@@ -6,7 +6,7 @@ public class Tile : MonoBehaviour
 {
 
     public bool walkable = true;
-    public bool current = false;
+    public bool highlighted = false; //implement hover
     public bool target = false;
     public bool selectable = false;
 
@@ -34,17 +34,17 @@ public class Tile : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (current)
+        if (highlighted)
         {
             GetComponent<Renderer>().material.color = Color.yellow;
         }
         else if (target)
         {
-            GetComponent<Renderer>().material.color = Color.yellow;
+            GetComponent<Renderer>().material.color = Color.green;
         }
         else if (selectable)
         {
-            GetComponent<Renderer>().material.color = Color.green;
+            GetComponent<Renderer>().material.color = Color.blue;
         }
         else
         {
@@ -68,9 +68,14 @@ public class Tile : MonoBehaviour
         f = g = h = 0;
     }
 
-    public void ClearCurrentTile()
+    public void Highlight()
     {
-        current = false;
+        highlighted = true;
+    }
+
+    public void RemoveHighlight()
+    {
+        highlighted = false;
     }
 
     public void FindNeighbors(float vertRange, Tile target)

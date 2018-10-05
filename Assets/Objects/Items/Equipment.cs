@@ -34,6 +34,7 @@ public class Equipment : Item
     public int wpnDamage;
     public int wpnRangeMin;
     public int wpnRangeMax;
+    public int wpnVert;
 
     public int wevModifier;
 

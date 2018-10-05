@@ -6,7 +6,11 @@ public class Item : ScriptableObject {
 
 	//override old name definition with 'new'
 	new public string name = "New Item";
+	public string description;
 	public Sprite icon = null;
+
+
+	public int iLevel = 0;
 
 	//Called when the item is selected 
 	public virtual void Use(){

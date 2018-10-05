@@ -34,13 +34,13 @@ public class TacticsAct : MonoBehaviour
     public void HighlightUnitTile()
     {
         currentTile = GetUnitTile(gameObject);
-        currentTile.current = true;
+        currentTile.highlighted = true;
     }
 
     //may not be necessary in TacticcsAct; could possibly be moved out of TacticsMove as well
     public void ClearCurrentTile()
     {
-        currentTile.current = false;
+        currentTile.highlighted = false;
     }
 
     public Tile GetUnitTile(GameObject target)
@@ -137,7 +137,7 @@ public class TacticsAct : MonoBehaviour
     {
         if (currentTile != null)
         {
-            currentTile.current = false;
+            currentTile.highlighted = false;
             currentTile = null;
         }
         foreach (Tile tile in selectableTiles)

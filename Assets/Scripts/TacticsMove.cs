@@ -15,7 +15,9 @@ public class TacticsMove : MonoBehaviour
     public bool moving = false;
     public bool moveAvailable = true;
 
-    public float jumpHeight = 2;
+    //from UnitStats
+    public float jump;
+    public float move;
 
     //for animations
     public float moveSpeed = 4;
@@ -39,17 +41,20 @@ public class TacticsMove : MonoBehaviour
     {
         tiles = GameObject.FindGameObjectsWithTag("Tile");
         halfHeight = GetComponent<Collider>().bounds.extents.y;
+        move = gameObject.GetComponent<UnitStats>().move;
+        jump = gameObject.GetComponent<UnitStats>().jump;
+
     }
 
     public void HighlightUnitTile()
     {
         currentTile = GetUnitTile(gameObject);
-        currentTile.current = true;
+        currentTile.highlighted = true;
     }
 
     public void ClearCurrentTile()
     {
-        currentTile.current = false;
+        currentTile.highlighted = false;
     }
 
     public Tile GetUnitTile(GameObject target)
@@ -70,13 +75,13 @@ public class TacticsMove : MonoBehaviour
         foreach (GameObject tile in tiles)
         {
             Tile t = tile.GetComponent<Tile>();
-            t.FindNeighbors(gameObject.GetComponent<UnitStats>().jump, target);
+            t.FindNeighbors(jump, target);
         }
     }
 
     public void FindSelectableTiles()
     {
-        ComputeAdjacencyLists(gameObject.GetComponent<UnitStats>().jump, null);
+        ComputeAdjacencyLists(jump, null);
         HighlightUnitTile();
 
         Queue<Tile> process = new Queue<Tile>();
@@ -92,7 +97,7 @@ public class TacticsMove : MonoBehaviour
             selectableTiles.Add(t);
             t.selectable = true;
 
-            if (t.distance < gameObject.GetComponent<UnitStats>().move)
+            if (t.distance < move)
             {
                 foreach (Tile tile in t.adjacencyList)
                 {
@@ -134,9 +139,9 @@ public class TacticsMove : MonoBehaviour
 
             if (Vector3.Distance(transform.position, target) >= 0.05f)
             {
-                bool jump = transform.position.y != target.y;
+                bool jumpNeeded = transform.position.y != target.y;
 
-                if (jump)
+                if (jumpNeeded)
                 {
                     Jump(target);
                 }
@@ -171,7 +176,7 @@ public class TacticsMove : MonoBehaviour
     {
         if (currentTile != null)
         {
-            currentTile.current = false;
+            currentTile.highlighted = false;
             currentTile = null;
         }
         foreach (Tile tile in selectableTiles)
@@ -319,13 +324,13 @@ public class TacticsMove : MonoBehaviour
             next = next.parent;
         }
 
-        if (tempPath.Count <= gameObject.GetComponent<UnitStats>().move)
+        if (tempPath.Count <= move)
         {
             return t.parent;
         }
 
         Tile endTile = null;
-        for (int i=0; i<= gameObject.GetComponent<UnitStats>().move; i++)
+        for (int i=0; i<= move; i++)
         {
             endTile = tempPath.Pop();
         }
@@ -336,7 +341,7 @@ public class TacticsMove : MonoBehaviour
 
     protected void FindPath(Tile target)
     {
-        ComputeAdjacencyLists(gameObject.GetComponent<UnitStats>().jump, target);
+        ComputeAdjacencyLists(jump, target);
         HighlightUnitTile();
 
         //todo: change to priority queue for efficiency
