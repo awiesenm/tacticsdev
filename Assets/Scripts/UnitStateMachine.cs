@@ -19,7 +19,6 @@ public class UnitStateMachine : MonoBehaviour
     }
 
     public float turnTimer = 0;
-    protected BattleStateMachine BSM;
     public TurnState currentState;
 
     // Use this for initialization
@@ -36,7 +35,7 @@ public class UnitStateMachine : MonoBehaviour
     {
         if (turnTimer == 100f)
         {
-            BSM.readyQueue.Enqueue(transform.gameObject);
+            BattleStateMachine.instance.readyQueue.Enqueue(transform.gameObject);
             currentState = TurnState.READY;
         }
         else
@@ -51,10 +50,10 @@ public class UnitStateMachine : MonoBehaviour
         // add logic for early turn end (ie wait timer = 20 etc)
         turnTimer = 0;
         UIManager.ResetPanels();
-        BSM.readyQueue.Dequeue();
-        BSM.activeUnit.GetComponent<PlayerMove>().ClearCurrentTile();
-        BSM.activeUnit = null;
+        BattleStateMachine.instance.readyQueue.Dequeue();
+        BattleStateMachine.instance.activeUnit.GetComponent<PlayerMove>().ClearCurrentTile();
+        BattleStateMachine.instance.activeUnit = null;
         currentState = TurnState.CHURNING;
-        BSM.battleState = BattleStateMachine.BattleState.CHURNING;
+        BattleStateMachine.instance.battleState = BattleStateMachine.BattleState.CHURNING;
     }
 }

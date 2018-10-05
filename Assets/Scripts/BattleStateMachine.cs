@@ -5,6 +5,24 @@ using UnityEngine;
 public class BattleStateMachine : MonoBehaviour
 {
 
+    #region Singleton
+
+    //global variable shared by all instances of the class
+    public static BattleStateMachine instance;
+
+    //assign this isntance to the global instance variable
+    //maintains only one inventory for the game
+    void Awake()
+    {
+        if (instance != null)
+        {
+            Debug.LogWarning("More than one instance of BattleStateMachine found!");
+        }
+        instance = this;
+    }
+
+    #endregion
+
     public enum BattleState
     {
         CHURNING,
@@ -21,20 +39,19 @@ public class BattleStateMachine : MonoBehaviour
     private GameObject mainActionPanel;
     private GameObject actPanel;
 
-
-
     public BattleState battleState;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start()
+    {
         battleState = BattleState.CHURNING;
 
         activePCs.AddRange(GameObject.FindGameObjectsWithTag("Player"));
         activeNPCs.AddRange(GameObject.FindGameObjectsWithTag("NPC"));
     }
-	
-	// Update is called once per frame
-	void Update ()
+
+    // Update is called once per frame
+    void Update()
     {
         switch (battleState)
         {
@@ -45,7 +62,7 @@ public class BattleStateMachine : MonoBehaviour
                 }
                 else
                 {
-                ProcessBattleTimer();
+                    ProcessBattleTimer();
                 }
 
                 break;
@@ -58,7 +75,7 @@ public class BattleStateMachine : MonoBehaviour
                 activeUnit.GetComponent<PlayerStateMachine>().currentState = PlayerStateMachine.TurnState.SELECTED;
 
                 battleState = BattleState.RECEIVINGINPUT;
-                
+
                 break;
 
             case (BattleState.RECEIVINGINPUT):
@@ -68,12 +85,13 @@ public class BattleStateMachine : MonoBehaviour
             case (BattleState.PERFORMINGACTION):
 
                 break;
-        }	
-	}
+        }
+    }
 
     private void ProcessBattleTimer()
     {
-        foreach (GameObject pc in activePCs) {
+        foreach (GameObject pc in activePCs)
+        {
             pc.GetComponent<PlayerStateMachine>().ProcessTurnTimer();
         }
         foreach (GameObject npc in activeNPCs)

@@ -11,7 +11,6 @@ public class PlayerStateMachine : UnitStateMachine
     // Use this for initialization
     void Start()
     {
-        BSM = GameObject.Find("BattleManager").GetComponent<BattleStateMachine>();
         currentState = TurnState.CHURNING;
         turnTimer = Random.Range(0f, 20f);
         PM = GetComponent<PlayerMove>();
