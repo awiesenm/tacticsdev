@@ -51,7 +51,8 @@ public class UnitStateMachine : MonoBehaviour
         turnTimer = 0;
         UIManager.ResetPanels();
         BattleStateMachine.instance.readyQueue.Dequeue();
-        BattleStateMachine.instance.activeUnit.GetComponent<PlayerMove>().ClearCurrentTile();
+        TileManager.GetUnitTile(BattleStateMachine.instance.activeUnit).RemoveHighlight();
+        
         BattleStateMachine.instance.activeUnit = null;
         currentState = TurnState.CHURNING;
         BattleStateMachine.instance.battleState = BattleStateMachine.BattleState.CHURNING;

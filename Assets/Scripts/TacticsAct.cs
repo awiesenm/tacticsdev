@@ -7,53 +7,34 @@ public class TacticsAct : MonoBehaviour
     public bool showRange = false;
 
     List<Tile> selectableTiles = new List<Tile>();
-    GameObject[] tiles;
+    GameObject[] tileSet;
 
-    Tile currentTile;
+    Tile startingTile;
     Tile targetTile;
 
-    public bool acting = false;
-    public bool actAvailable = true;
+    protected bool acting = false;
+    protected bool actAvailable = true;
 
-    float atkRangeMax;
-    float atkRangeMin;
-    float atkVert;
+    protected float atkRangeMax;
+    protected float atkRangeMin;
+    protected float atkVert;
 
     // Center of the object --may need to adjust when using sprites. 
     //float halfHeight = 0;
 
     protected void Init()
     {
-        tiles = GameObject.FindGameObjectsWithTag("Tile");
+        tileSet = TileManager.instance.GetTileSet();
         atkRangeMax = gameObject.GetComponent<UnitStats>().atkRangeMax;
         atkRangeMin = gameObject.GetComponent<UnitStats>().atkRangeMin;
         atkVert = gameObject.GetComponent<UnitStats>().atkVert;
         //halfHeight = GetComponent<Collider>().bounds.extents.y;
     }
 
-    public void HighlightUnitTile()
+    public void SetStartingTile()
     {
-        currentTile = GetUnitTile(gameObject);
-        currentTile.highlighted = true;
-    }
-
-    //may not be necessary in TacticcsAct; could possibly be moved out of TacticsMove as well
-    public void ClearCurrentTile()
-    {
-        currentTile.highlighted = false;
-    }
-
-    public Tile GetUnitTile(GameObject target)
-    {
-        RaycastHit hit;
-        Tile tile = null;
-
-        if (Physics.Raycast(target.transform.position, -Vector3.up, out hit, 1))
-        {
-            tile = hit.collider.GetComponent<Tile>();
-        }
-
-        return tile;
+        startingTile = TileManager.GetUnitTile(gameObject);
+        startingTile.highlighted = true;
     }
 
     public void ActOnTarget(Tile tile)
@@ -111,8 +92,8 @@ public class TacticsAct : MonoBehaviour
 
     public void FindSelectableTiles()
     {
-        Tile unitTile = GetUnitTile(gameObject);
-        foreach (GameObject tile in tiles)
+        Tile unitTile = TileManager.GetUnitTile(gameObject);
+        foreach (GameObject tile in tileSet)
         {
             Tile t = tile.GetComponent<Tile>();
 
@@ -135,17 +116,17 @@ public class TacticsAct : MonoBehaviour
 
     protected void RemoveSelectableTiles()
     {
-        if (currentTile != null)
+        if (startingTile != null)
         {
-            currentTile.highlighted = false;
-            currentTile = null;
+            startingTile.highlighted = false;
+            startingTile = null;
         }
         foreach (Tile tile in selectableTiles)
         {
             tile.Reset();
         }
 
-        HighlightUnitTile();
+        SetStartingTile();
 
         selectableTiles.Clear();
     }

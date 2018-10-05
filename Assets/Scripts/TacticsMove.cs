@@ -7,17 +7,17 @@ public class TacticsMove : MonoBehaviour
     public bool showRange = false;
 
     List<Tile> selectableTiles = new List<Tile>();
-    GameObject[] tiles;
+    GameObject[] tileSet;
 
     Stack<Tile> path = new Stack<Tile>();
-    Tile currentTile;
+    Tile startingTile;
 
-    public bool moving = false;
-    public bool moveAvailable = true;
+    protected bool moving = false;
+    protected bool moveAvailable = true;
 
     //from UnitStats
-    public float jump;
-    public float move;
+    protected float jump;
+    protected float move;
 
     //for animations
     public float moveSpeed = 4;
@@ -39,40 +39,22 @@ public class TacticsMove : MonoBehaviour
 
     protected void Init()
     {
-        tiles = GameObject.FindGameObjectsWithTag("Tile");
+        tileSet = TileManager.instance.GetTileSet();
         halfHeight = GetComponent<Collider>().bounds.extents.y;
         move = gameObject.GetComponent<UnitStats>().move;
         jump = gameObject.GetComponent<UnitStats>().jump;
 
     }
 
-    public void HighlightUnitTile()
+    public void SetStartingTile()
     {
-        currentTile = GetUnitTile(gameObject);
-        currentTile.highlighted = true;
-    }
-
-    public void ClearCurrentTile()
-    {
-        currentTile.highlighted = false;
-    }
-
-    public Tile GetUnitTile(GameObject target)
-    {
-        RaycastHit hit;
-        Tile tile = null;
-
-        if (Physics.Raycast(target.transform.position, -Vector3.up, out hit, 1))
-        {
-            tile = hit.collider.GetComponent<Tile>();
-        }
-
-        return tile;
+        startingTile = TileManager.GetUnitTile(gameObject);
+        startingTile.Highlight();
     }
 
     public void ComputeAdjacencyLists(float jump, Tile target)
     {
-        foreach (GameObject tile in tiles)
+        foreach (GameObject tile in tileSet)
         {
             Tile t = tile.GetComponent<Tile>();
             t.FindNeighbors(jump, target);
@@ -82,12 +64,12 @@ public class TacticsMove : MonoBehaviour
     public void FindSelectableTiles()
     {
         ComputeAdjacencyLists(jump, null);
-        HighlightUnitTile();
+        SetStartingTile();
 
         Queue<Tile> process = new Queue<Tile>();
 
-        process.Enqueue(currentTile);
-        currentTile.visited = true;
+        process.Enqueue(startingTile);
+        startingTile.visited = true;
 
         // Need to account for fully blocked unit
         while (process.Count > 0)
@@ -174,17 +156,17 @@ public class TacticsMove : MonoBehaviour
 
     protected void RemoveSelectableTiles()
     {
-        if (currentTile != null)
+        if (startingTile != null)
         {
-            currentTile.highlighted = false;
-            currentTile = null;
+            startingTile.highlighted = false;
+            startingTile = null;
         }
         foreach (Tile tile in selectableTiles)
         {
             tile.Reset();
         }
 
-        HighlightUnitTile();
+        SetStartingTile();
 
         selectableTiles.Clear();
     }
@@ -342,16 +324,16 @@ public class TacticsMove : MonoBehaviour
     protected void FindPath(Tile target)
     {
         ComputeAdjacencyLists(jump, target);
-        HighlightUnitTile();
+        SetStartingTile();
 
         //todo: change to priority queue for efficiency
         List<Tile> openList = new List<Tile>();
         List<Tile> closedList = new List<Tile>();
 
-        openList.Add(currentTile);
+        openList.Add(startingTile);
         // change to Vector3.SqrMagnitude see NPCMove FindNearestTarget()
-        currentTile.h = Vector3.Distance(currentTile.transform.position, target.transform.position);
-        currentTile.f = currentTile.h;
+        startingTile.h = Vector3.Distance(startingTile.transform.position, target.transform.position);
+        startingTile.f = startingTile.h;
 
         while (openList.Count > 0)
         {

@@ -35,7 +35,7 @@ public class NPCMove : TacticsMove
 
     void CalculatePath()
     {
-        Tile targetTile = GetUnitTile(target);
+        Tile targetTile = TileManager.GetUnitTile(target);
         FindPath(targetTile);
     }
 
