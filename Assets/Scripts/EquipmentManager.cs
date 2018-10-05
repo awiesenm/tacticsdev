@@ -6,6 +6,10 @@ public class EquipmentManager : MonoBehaviour
 {
     //Will need to keep private for player units, public for enemies to set up scenes
     public Equipment[] currentEquipment;
+
+    public delegate void OnEquipmentChanged(Equipment newItem, Equipment oldItem);
+    public OnEquipmentChanged onEquipmentChanged;
+
     Inventory inventory;
 
     void Start()
@@ -15,6 +19,14 @@ public class EquipmentManager : MonoBehaviour
         //Number of slot types in the EquipmentSlot enum
         int numSlots = System.Enum.GetNames(typeof(EquipmentSlot)).Length;
         currentEquipment = new Equipment[numSlots];
+
+        // foreach (Equipment equipment in currentEquipment)
+        // {
+        //     if (equipment != null)
+        //     {
+        //         //set stats
+        //     }
+        // }
     }
 
     public void Equip(Equipment newItem)
@@ -29,6 +41,12 @@ public class EquipmentManager : MonoBehaviour
             oldItem = currentEquipment[slotIndex];
             inventory.Add(oldItem);
         }
+
+        if (onEquipmentChanged != null)
+        {
+            onEquipmentChanged.Invoke(newItem, oldItem);
+        }
+
         currentEquipment[slotIndex] = newItem;
     }
 
@@ -40,6 +58,11 @@ public class EquipmentManager : MonoBehaviour
             inventory.Add(oldItem);
 
             currentEquipment[slotIndex] = null;
+
+            if (onEquipmentChanged != null)
+            {
+                onEquipmentChanged.Invoke(null, oldItem);
+            }
         }
     }
 

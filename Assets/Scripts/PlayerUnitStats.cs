@@ -7,4 +7,18 @@ using UnityEngine;
 public class PlayerUnitStats : UnitStats
 {
     
+
+
+
+    void Start(){
+       // Init();
+    }
+
+
+
+
+    void Init(){
+        atkVert = GetComponent<EquipmentManager>().currentEquipment[0].wpnVert;
+    }
 }
+

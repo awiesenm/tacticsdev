@@ -217,7 +217,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -332,7 +332,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -447,7 +447,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -562,7 +562,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -677,7 +677,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -792,7 +792,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -907,7 +907,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -1066,7 +1066,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -1181,7 +1181,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -1296,7 +1296,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -1510,7 +1510,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -1625,7 +1625,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -1783,9 +1783,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   showRange: 0
-  moving: 0
-  moveAvailable: 1
-  jumpHeight: 2
   moveSpeed: 4
   jumpVelocity: 4.5
   actualTargetTile: {fileID: 0}
@@ -1967,7 +1964,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -2082,7 +2079,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -2197,7 +2194,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -2312,7 +2309,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -2427,7 +2424,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -2542,7 +2539,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -2657,7 +2654,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -2814,7 +2811,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -2949,9 +2946,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   showRange: 0
-  moving: 0
-  moveAvailable: 1
-  jumpHeight: 2
   moveSpeed: 4
   jumpVelocity: 4.5
   actualTargetTile: {fileID: 0}
@@ -3149,7 +3143,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -3264,7 +3258,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -3379,7 +3373,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -3494,7 +3488,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -3609,7 +3603,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -3724,7 +3718,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -3917,7 +3911,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -4032,7 +4026,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -4147,7 +4141,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -4262,7 +4256,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -4501,7 +4495,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -4616,7 +4610,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -4677,9 +4671,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   showRange: 0
-  moving: 0
-  moveAvailable: 1
-  jumpHeight: 2
   moveSpeed: 4
   jumpVelocity: 4.5
   actualTargetTile: {fileID: 0}
@@ -4769,18 +4760,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitName: Agrias
-  maxHP: 100
-  curHP: 100
+  level: 0
+  maxEXP: 100
+  JP: 0
+  maxHP: 80
+  currentHP: 0
   maxMP: 0
-  curMP: 0
-  physicalAttack: -50
-  magicalAttack: 0
-  speed: 8
+  currentMP: 0
+  physicalAttack:
+    baseValue: 30
+  magicalAttack:
+    baseValue: 0
+  speed:
+    baseValue: 8
   atkRangeMax: 3
   atkRangeMin: 0
   atkVert: 1
-  move: 4
-  jump: 0
+  move:
+    baseValue: 3
+  jump:
+    baseValue: 3
 --- !u!114 &543620408
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4794,8 +4793,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   showRange: 0
-  acting: 0
-  actAvailable: 1
 --- !u!114 &543620409
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4914,7 +4911,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -5029,7 +5026,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -5144,7 +5141,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -5259,7 +5256,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -5374,7 +5371,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -5489,7 +5486,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -5719,7 +5716,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -5954,7 +5951,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -6195,7 +6192,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -6310,7 +6307,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -6425,7 +6422,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -6540,7 +6537,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -6771,7 +6768,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -6886,7 +6883,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -7001,7 +6998,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -7116,7 +7113,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -7231,7 +7228,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -7426,7 +7423,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -7445,6 +7442,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 759480952}
+  - component: {fileID: 759480953}
   m_Layer: 0
   m_Name: Map
   m_TagString: Untagged
@@ -7468,6 +7466,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &759480953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 759480951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e233fc5ed6952ec4cb44416ca9989d55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &767290179
 GameObject:
   m_ObjectHideFlags: 0
@@ -7573,7 +7583,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -7814,7 +7824,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -7971,7 +7981,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -8201,7 +8211,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -8442,7 +8452,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -8557,7 +8567,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -8672,7 +8682,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -8865,7 +8875,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -8980,7 +8990,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -9095,7 +9105,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -9330,7 +9340,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -9445,7 +9455,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -9560,7 +9570,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -9717,7 +9727,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -9832,7 +9842,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -10036,7 +10046,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -10151,7 +10161,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -10266,7 +10276,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -10381,7 +10391,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -10538,7 +10548,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -10653,7 +10663,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -10714,9 +10724,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   showRange: 0
-  moving: 0
-  moveAvailable: 1
-  jumpHeight: 2
   moveSpeed: 4
   jumpVelocity: 4.5
   actualTargetTile: {fileID: 0}
@@ -10806,18 +10813,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitName: Delita
+  level: 0
+  maxEXP: 100
+  JP: 0
   maxHP: 100
-  curHP: 100
+  currentHP: 0
   maxMP: 0
-  curMP: 0
-  physicalAttack: 13
-  magicalAttack: 0
-  speed: 11
+  currentMP: 0
+  physicalAttack:
+    baseValue: 20
+  magicalAttack:
+    baseValue: 0
+  speed:
+    baseValue: 9
   atkRangeMax: 1
   atkRangeMin: 0
   atkVert: 1
-  move: 5
-  jump: 3
+  move:
+    baseValue: 4
+  jump:
+    baseValue: 2
 --- !u!114 &1072688973
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10831,8 +10846,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   showRange: 0
-  acting: 0
-  actAvailable: 1
 --- !u!114 &1072688974
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10951,7 +10964,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -11111,7 +11124,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -11226,7 +11239,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -11346,9 +11359,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   showRange: 0
-  moving: 0
-  moveAvailable: 1
-  jumpHeight: 2
   moveSpeed: 4
   jumpVelocity: 4.5
   actualTargetTile: {fileID: 0}
@@ -11379,18 +11389,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitName: Ramza
+  level: 0
+  maxEXP: 100
+  JP: 0
   maxHP: 100
-  curHP: 100
+  currentHP: 0
   maxMP: 0
-  curMP: 0
-  physicalAttack: 15
-  magicalAttack: 0
-  speed: 18
+  currentMP: 0
+  physicalAttack:
+    baseValue: 15
+  magicalAttack:
+    baseValue: 0
+  speed:
+    baseValue: 10
   atkRangeMax: 1
   atkRangeMin: 0
   atkVert: 0
-  move: 5
-  jump: 3
+  move:
+    baseValue: 3
+  jump:
+    baseValue: 2
 --- !u!114 &1142132423
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11404,8 +11422,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   showRange: 0
-  acting: 0
-  actAvailable: 1
 --- !u!114 &1142132424
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11605,7 +11621,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -11835,7 +11851,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -11950,7 +11966,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -12143,7 +12159,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -12300,7 +12316,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -12457,7 +12473,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -12572,7 +12588,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -12687,7 +12703,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -12995,7 +13011,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -13110,7 +13126,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -13429,7 +13445,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -13683,7 +13699,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -13798,7 +13814,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -13913,7 +13929,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -13970,9 +13986,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   showRange: 0
-  moving: 0
-  moveAvailable: 1
-  jumpHeight: 2
   moveSpeed: 4
   jumpVelocity: 4.5
   actualTargetTile: {fileID: 0}
@@ -14218,7 +14231,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -14333,7 +14346,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -14448,7 +14461,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -14563,7 +14576,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -14678,7 +14691,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -14859,7 +14872,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -14974,7 +14987,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -15089,7 +15102,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -15246,7 +15259,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -15361,7 +15374,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -15476,7 +15489,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -15591,7 +15604,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -15706,7 +15719,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -15821,7 +15834,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -16014,7 +16027,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -16129,7 +16142,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -16244,7 +16257,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -16359,7 +16372,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -16474,7 +16487,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -16589,7 +16602,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -16704,7 +16717,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -16819,7 +16832,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -16934,7 +16947,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -17049,7 +17062,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -17164,7 +17177,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -17279,7 +17292,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -17394,7 +17407,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -17509,7 +17522,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -17671,7 +17684,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -17786,7 +17799,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -17901,7 +17914,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -18089,7 +18102,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -18204,7 +18217,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -18319,7 +18332,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -18434,7 +18447,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -18549,7 +18562,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -18664,7 +18677,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -18779,7 +18792,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -18894,7 +18907,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -19009,7 +19022,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -19124,7 +19137,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -19412,7 +19425,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -19527,7 +19540,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -19642,7 +19655,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -19757,7 +19770,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -19872,7 +19885,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -19987,7 +20000,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -20102,7 +20115,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -20217,7 +20230,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -20332,7 +20345,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -20447,7 +20460,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -20562,7 +20575,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -20677,7 +20690,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -20792,7 +20805,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -20907,7 +20920,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []
@@ -21022,7 +21035,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  current: 0
+  highlighted: 0
   target: 0
   selectable: 0
   adjacencyList: []

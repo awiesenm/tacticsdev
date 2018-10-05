@@ -94,9 +94,9 @@ public class BattleStateMachine : MonoBehaviour
         {
             pc.GetComponent<PlayerStateMachine>().ProcessTurnTimer();
         }
-        foreach (GameObject npc in activeNPCs)
-        {
-            npc.GetComponent<EnemyStateMachine>().ProcessTurnTimer();
-        }
+        // foreach (GameObject npc in activeNPCs)
+        // {
+        //     npc.GetComponent<EnemyStateMachine>().ProcessTurnTimer();
+        // }
     }
 }

@@ -16,8 +16,8 @@ public class TacticsMove : MonoBehaviour
     protected bool moveAvailable = true;
 
     //from UnitStats
-    protected float jump;
-    protected float move;
+    protected int jump;
+    protected int move;
 
     //for animations
     public float moveSpeed = 4;
@@ -41,8 +41,8 @@ public class TacticsMove : MonoBehaviour
     {
         tileSet = TileManager.instance.GetTileSet();
         halfHeight = GetComponent<Collider>().bounds.extents.y;
-        move = gameObject.GetComponent<UnitStats>().move;
-        jump = gameObject.GetComponent<UnitStats>().jump;
+        move = gameObject.GetComponent<UnitStats>().move.GetValue();
+        jump = gameObject.GetComponent<UnitStats>().jump.GetValue();
 
     }
 

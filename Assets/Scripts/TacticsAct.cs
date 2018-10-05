@@ -51,28 +51,11 @@ public class TacticsAct : MonoBehaviour
         //find object above tile
         if (Physics.Raycast(targetTile.transform.position, Vector3.up, out hit, 1))
         {
-            GameObject target = hit.transform.gameObject;
-            if (target.GetComponent<UnitStats>())
+            UnitStats target = hit.transform.gameObject.GetComponent<UnitStats>();
+            if (target != null)
             {
-                float curHP = target.GetComponent<UnitStats>().curHP;
-                float maxHP = target.GetComponent<UnitStats>().maxHP;
-                float physicalAttack = GetComponent<UnitStats>().physicalAttack;
-
-                curHP -= physicalAttack;
-
-                if (curHP <= 0){
-                    curHP = 0;
-                    print(target.GetComponent<UnitStats>().name + " has fallen on the battlefield.");
-                }
-
-                if (curHP >= maxHP) {
-                    curHP = maxHP;
-                    print(target.GetComponent<UnitStats>().name + " was overcured.");
-
-                }
-
-                target.GetComponent<UnitStats>().curHP = curHP;
-                
+                int damage = GetComponent<UnitStats>().physicalAttack.GetValue(); //update to CalculateDamage()
+                target.TakeDamage(damage);       
             }
 
         }

@@ -40,7 +40,7 @@ public class UnitStateMachine : MonoBehaviour
         }
         else
         {
-            turnTimer += GetComponent<UnitStats>().speed;
+            turnTimer += GetComponent<UnitStats>().speed.GetValue();
             turnTimer = Mathf.Clamp(turnTimer, 0, 100);
         }
     }

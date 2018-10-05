@@ -8,7 +8,7 @@ public class Equipment : Item
 
     public EquipmentSlot equipSlot;
 
-    //Base stats
+    [Header("Base Stats")]
     public int hpModifier;
     public int mpModifier;
 
@@ -23,14 +23,14 @@ public class Equipment : Item
     public int pevModifier;
     public int mevModifier;
 
-    //Resist
+    [Header("Resists")]
     // +3 absorb, +2 nullify, +1 resist, 0 neutral, -1 weak
     public int fireAffinity;
     public int iceAffinity;
     public int lightningAffinity;
     public int earthAffinity;
 
-    //Weapon
+    [Header("Weapon Stats")]
     public int wpnDamage;
     public int wpnRangeMin;
     public int wpnRangeMax;
@@ -41,7 +41,8 @@ public class Equipment : Item
     public bool twoHands;
     public bool dualWield;
 
-    public enum wpnPattern {Standard, Line, Bow}
+    public enum wpnType {Sword, Spear, Staff, Bow}
+    //public enum wpnPattern {Standard, Line, Bow}
     public enum wpnMultiplier {PA, MA, WPN}
     public enum wpnElement {Fire, Ice, Lightning, Earth}
 
