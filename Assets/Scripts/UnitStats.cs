@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 // clarify serializable
 [System.Serializable]
@@ -11,26 +13,30 @@ public class UnitStats : MonoBehaviour
 
     public int JP;
 
-    [Header("Main Unit Stats")]
+    [Header("Base Stats")]
     public int maxHP;
     public int currentHP;
-
     public int maxMP;
     public int currentMP;
 
-    // public int dex;
     public Stat physicalAttack;
     public Stat magicalAttack;
     public Stat speed;
+
+    [Header("Evasion")]
+    public int pev; //TODO: split by type
+    public int mev;
+
+    [Header("Movement")]
+    public Stat move;
+    public Stat jump;
 
     [Header("Weapon Stats")]
     public int atkRangeMax;
     public int atkRangeMin; //0 for self-target
     public int atkVert;
 
-    [Header("Movement")]
-    public Stat move;
-    public Stat jump;
+    public List<StatusEffect> statusEffects;
 
     /*
     public enum Affinity
@@ -50,7 +56,7 @@ public class UnitStats : MonoBehaviour
 
     void Start()
     {
-        GetComponent<EquipmentManager>().onEquipmentChanged += OnEquipmentChanged;
+        GetComponent<UnitManager>().onEquipmentChanged += OnEquipmentChanged;
     }
 
     void OnEquipmentChanged(Equipment newItem, Equipment oldItem)
@@ -88,3 +94,8 @@ public class UnitStats : MonoBehaviour
         Debug.Log(transform.name + " died.");
     }
 }
+
+public enum KeyStat { None, PA, MA, WPN } //currently derived from weaponType; may be able to get away with that for all types
+public enum Element { None, Fire, Ice, Lightning, Earth }
+public enum StatusApplied { None, Blind, Silence, Regen }
+public enum Pattern { Standard, Line }

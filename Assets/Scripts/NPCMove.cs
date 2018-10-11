@@ -20,17 +20,17 @@ public class NPCMove : TacticsMove
             return;
         }
 
-        if (!moving)
-        {
-            FindNearestTarget();
-            CalculatePath();
-            FindSelectableTiles();
-            actualTargetTile.target = true;
-        }
-        else
-        {
-            Move();
-        }
+        // if (!moving)
+        // {
+        //     FindNearestTarget();
+        //     CalculatePath();
+        //     FindSelectableTiles();
+        //     actualTargetTile.target = true;
+        // }
+        // else
+        // {
+        //     Move();
+        // }
     }
 
     void CalculatePath()

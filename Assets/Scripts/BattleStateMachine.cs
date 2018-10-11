@@ -62,6 +62,10 @@ public class BattleStateMachine : MonoBehaviour
                 }
                 else
                 {
+                    if (CheckTimers())
+                    {
+                        break;
+                    }
                     ProcessBattleTimer();
                 }
 
@@ -71,8 +75,8 @@ public class BattleStateMachine : MonoBehaviour
                 //Debug.Log(readyQueue.Count);
                 activeUnit = readyQueue.Peek();
                 //player only need to add NPC
-                activeUnit.GetComponent<PlayerMove>().SetStartingTile();
-                activeUnit.GetComponent<PlayerStateMachine>().currentState = PlayerStateMachine.TurnState.SELECTED;
+                activeUnit.GetComponent<TacticsMove>().SetStartingTile();
+                activeUnit.GetComponent<PlayerStateMachine>().GoToSELECTED();
 
                 battleState = BattleState.RECEIVINGINPUT;
 
@@ -86,6 +90,18 @@ public class BattleStateMachine : MonoBehaviour
 
                 break;
         }
+    }
+
+    private bool CheckTimers() //currently spd=10 >> spd=9 because 10 takes one less tick. consider carryover ie 107 -> next start at 7
+    {
+        foreach (GameObject pc in activePCs)
+        {
+            if (pc.GetComponent<PlayerStateMachine>().CheckTurnTimer())
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     private void ProcessBattleTimer()

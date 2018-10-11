@@ -4,16 +4,13 @@ using UnityEngine;
 
 public class TacticsMove : MonoBehaviour
 {
-    public bool showRange = false;
-
     List<Tile> selectableTiles = new List<Tile>();
-    GameObject[] tileSet;
-
     Stack<Tile> path = new Stack<Tile>();
     Tile startingTile;
+    protected Tile actualTargetTile;
 
-    protected bool moving = false;
     protected bool moveAvailable = true;
+    public bool showRange = false;
 
     //from UnitStats
     protected int jump;
@@ -27,7 +24,7 @@ public class TacticsMove : MonoBehaviour
     Vector3 velocity = new Vector3();
     Vector3 heading = new Vector3();
 
-    // Center of the object --may need to adjust when using sprites. 
+    // Center of the object -- may need to adjust when using sprites. 
     float halfHeight = 0;
 
     bool fallingDown = false;
@@ -35,15 +32,26 @@ public class TacticsMove : MonoBehaviour
     bool movingEdge = false;
     Vector3 jumpTarget;
 
-    public Tile actualTargetTile;
-
-    protected void Init()
+    void Start()
     {
-        tileSet = TileManager.instance.GetTileSet();
+        Init();
+    }
+
+    public void Init()
+    {
         halfHeight = GetComponent<Collider>().bounds.extents.y;
         move = gameObject.GetComponent<UnitStats>().move.GetValue();
         jump = gameObject.GetComponent<UnitStats>().jump.GetValue();
 
+    }
+
+    public void EndMovement()
+    {
+        RemoveSelectableTiles();
+        showRange = false;
+        moveAvailable = false;
+        UIManager.DeactivateCanvasGroup(GameObject.Find("MoveButton").GetComponent<CanvasGroup>());
+        GetComponent<PlayerStateMachine>().GoToSELECTED();
     }
 
     public void SetStartingTile()
@@ -54,7 +62,7 @@ public class TacticsMove : MonoBehaviour
 
     public void ComputeAdjacencyLists(float jump, Tile target)
     {
-        foreach (GameObject tile in tileSet)
+        foreach (GameObject tile in TileManager.instance.tileSet)
         {
             Tile t = tile.GetComponent<Tile>();
             t.FindNeighbors(jump, target);
@@ -99,7 +107,6 @@ public class TacticsMove : MonoBehaviour
     {
         path.Clear();
         tile.target = true;
-        moving = true;
 
         Tile next = tile;
         while (next != null)
@@ -148,13 +155,11 @@ public class TacticsMove : MonoBehaviour
         }
         else
         {
-            GetComponent<PlayerStateMachine>().currentState = UnitStateMachine.TurnState.MOVED;
-            RemoveSelectableTiles();
             EndMovement();
         }
     }
 
-    protected void RemoveSelectableTiles()
+    public void RemoveSelectableTiles()
     {
         if (startingTile != null)
         {
@@ -294,7 +299,7 @@ public class TacticsMove : MonoBehaviour
 
         return lowest;
     }
-    
+
     protected Tile FindEndTile(Tile t)
     {
         Stack<Tile> tempPath = new Stack<Tile>();
@@ -312,7 +317,7 @@ public class TacticsMove : MonoBehaviour
         }
 
         Tile endTile = null;
-        for (int i=0; i<= move; i++)
+        for (int i = 0; i <= move; i++)
         {
             endTile = tempPath.Pop();
         }
@@ -382,22 +387,6 @@ public class TacticsMove : MonoBehaviour
 
         //todo: IMPORTANT: no path to target? Unity Tutorial - Tactics Movement Part 6 at 17:50
         Debug.Log("Path not found");
-        
-    }
 
-    public void ResetMoveAvailability()
-    {
-        showRange = false;
-        moving = false;
-        moveAvailable = true;
-    }
-    
-    public void EndMovement()
-    {
-        showRange = false;
-        moving = false;
-        moveAvailable = false;
-        UIManager.DeactivateCanvasGroup(GameObject.Find("MoveButton").GetComponent<CanvasGroup>());
-        UIManager.ShowCanvasGroup(GameObject.Find("MainActionPanel").GetComponent<CanvasGroup>());
     }
 }

@@ -12,33 +12,30 @@ public class UnitStateMachine : MonoBehaviour
         SELECTED,
         DISPLAYINGMOVERANGE,
         MOVING,
-        MOVED,
         DISPLAYINGACTRANGE,
         ACTING,
         ACTED
     }
 
+    protected UIManager UI;
+
     public float turnTimer = 0;
     public TurnState currentState;
 
-    // Use this for initialization
-    void Start()
-    { }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
-    public void ProcessTurnTimer()
+    public bool CheckTurnTimer()
     {
         if (turnTimer == 100f)
         {
             BattleStateMachine.instance.readyQueue.Enqueue(transform.gameObject);
             currentState = TurnState.READY;
+            return true;
         }
-        else
+        return false;
+    }
+
+    public void ProcessTurnTimer()
+    {
+        if (!CheckTurnTimer())
         {
             turnTimer += GetComponent<UnitStats>().speed.GetValue();
             turnTimer = Mathf.Clamp(turnTimer, 0, 100);
@@ -49,10 +46,10 @@ public class UnitStateMachine : MonoBehaviour
     {
         // add logic for early turn end (ie wait timer = 20 etc)
         turnTimer = 0;
-        UIManager.ResetPanels();
+        UI.ResetPanels();
         BattleStateMachine.instance.readyQueue.Dequeue();
         TileManager.GetUnitTile(BattleStateMachine.instance.activeUnit).RemoveHighlight();
-        
+
         BattleStateMachine.instance.activeUnit = null;
         currentState = TurnState.CHURNING;
         BattleStateMachine.instance.battleState = BattleStateMachine.BattleState.CHURNING;

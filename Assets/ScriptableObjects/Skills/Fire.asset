@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c4fbd6b75d5f1943add36eaba51a4df, type: 3}
+  m_Name: Fire
+  m_EditorClassIdentifier: 
+  name: Fire
+  description: Hot hot hot.
+  icon: {fileID: 0}
+  job: 3
+  jpCost: 0
+  potency: 10
+  mpCost: 5
+  chargeTime: 5
+  useWeaponRange: 0
+  rangeMin: 0
+  rangeMax: 5
+  vert: 2
+  spread: 1
+  pattern: 0
+  keyStat: 2
+  element: 1
+  statusChance: 0
+  statusApplied: 0

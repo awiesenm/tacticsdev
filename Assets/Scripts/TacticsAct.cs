@@ -4,30 +4,33 @@ using UnityEngine;
 
 public class TacticsAct : MonoBehaviour
 {
+
+    //Consider creating single instance ActionManager to handle all actions
+
     public bool showRange = false;
 
     List<Tile> selectableTiles = new List<Tile>();
-    GameObject[] tileSet;
-
     Tile startingTile;
     Tile targetTile;
+    UnitStats unitStats;
 
-    protected bool acting = false;
     protected bool actAvailable = true;
 
-    protected float atkRangeMax;
-    protected float atkRangeMin;
-    protected float atkVert;
+    protected float rangeMax;
+    protected float rangeMin;
+    protected float vert;
 
     // Center of the object --may need to adjust when using sprites. 
     //float halfHeight = 0;
 
+    void Start()
+    {
+        Init();
+    }
+
     protected void Init()
     {
-        tileSet = TileManager.instance.GetTileSet();
-        atkRangeMax = gameObject.GetComponent<UnitStats>().atkRangeMax;
-        atkRangeMin = gameObject.GetComponent<UnitStats>().atkRangeMin;
-        atkVert = gameObject.GetComponent<UnitStats>().atkVert;
+        unitStats = GetComponent<UnitStats>();
         //halfHeight = GetComponent<Collider>().bounds.extents.y;
     }
 
@@ -41,21 +44,26 @@ public class TacticsAct : MonoBehaviour
     {
         targetTile = tile;
         targetTile.target = true;
-        acting = true;
     }
 
-    public void Act()
+    public void Act(ActiveSkill skill)
     {
         RaycastHit hit;
 
         //find object above tile
         if (Physics.Raycast(targetTile.transform.position, Vector3.up, out hit, 1))
         {
-            UnitStats target = hit.transform.gameObject.GetComponent<UnitStats>();
-            if (target != null)
+            UnitStats targetStats = hit.transform.gameObject.GetComponent<UnitStats>();
+            if (targetStats != null)
             {
-                int damage = GetComponent<UnitStats>().physicalAttack.GetValue(); //update to CalculateDamage()
-                target.TakeDamage(damage);       
+                if (skill == null)
+                {
+                    CombatActions.Attack(gameObject, targetStats);
+                }
+                else
+                {
+                    CombatActions.UseSkill(gameObject, targetStats, skill);
+                }
             }
 
         }
@@ -68,15 +76,29 @@ public class TacticsAct : MonoBehaviour
         GetComponent<PlayerStateMachine>().currentState = UnitStateMachine.TurnState.ACTED;
         RemoveSelectableTiles();
         EndAction();
-        
+
         //EndTurn();
 
     }
 
-    public void FindSelectableTiles()
+    public void FindSelectableTiles(ActiveSkill skill)
     {
+        if (skill == null)
+        {
+            //consider getting stats directly from weapon in future
+            rangeMax = unitStats.atkRangeMax;
+            rangeMin = unitStats.atkRangeMin;
+            vert = unitStats.atkVert;
+        }
+        else
+        {
+            rangeMax = skill.rangeMax;
+            rangeMin = skill.rangeMin;
+            vert = skill.vert;
+            //TODO: pattern, spread
+        }
         Tile unitTile = TileManager.GetUnitTile(gameObject);
-        foreach (GameObject tile in tileSet)
+        foreach (GameObject tile in TileManager.instance.tileSet)
         {
             Tile t = tile.GetComponent<Tile>();
 
@@ -87,7 +109,7 @@ public class TacticsAct : MonoBehaviour
             float distance = deltaX + deltaZ;
             float height = deltaY;
 
-            bool isValidTarget = distance >= atkRangeMin && distance <= atkRangeMax && height <= atkVert;
+            bool isValidTarget = distance >= rangeMin && distance <= rangeMax && height <= vert;
 
             if (isValidTarget)
             {
@@ -97,7 +119,7 @@ public class TacticsAct : MonoBehaviour
         }
     }
 
-    protected void RemoveSelectableTiles()
+    public void RemoveSelectableTiles()
     {
         if (startingTile != null)
         {
@@ -117,16 +139,12 @@ public class TacticsAct : MonoBehaviour
     public void ResetActAvailability()
     {
         showRange = false;
-        acting = false;
         actAvailable = true;
     }
 
     public void EndAction()
     {
         showRange = false;
-        acting = false;
         actAvailable = false;
-        //UIManager.DeactivateCanvasGroup(GameObject.Find("MoveButton").GetComponent<CanvasGroup>());
-        //UIManager.ShowCanvasGroup(GameObject.Find("MainActionPanel").GetComponent<CanvasGroup>());
     }
 }

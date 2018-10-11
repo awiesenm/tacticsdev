@@ -4,7 +4,7 @@ using UnityEngine;
 
 // clarify serializable
 [System.Serializable]
-public class PlayerUnitStats : UnitStats
+public class PlayerStats : UnitStats
 {
     
 
@@ -12,13 +12,14 @@ public class PlayerUnitStats : UnitStats
 
     void Start(){
        // Init();
+       //DontDestroyOnLoad(gameObject); // persist between scenes. 
     }
 
 
 
 
     void Init(){
-        atkVert = GetComponent<EquipmentManager>().currentEquipment[0].wpnVert;
+        atkVert = GetComponent<UnitManager>().currentEquipment[0].weaponVert;
     }
 }
 
