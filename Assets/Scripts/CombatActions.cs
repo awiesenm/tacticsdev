@@ -50,6 +50,7 @@ public static class CombatActions
             Debug.Log("BUG: No damage formula set for attack.");
         }
 
+        Debug.Log(actingUnitStats.unitName + " attacks.");
         targetStats.TakeDamage(damage);
     }
 
@@ -68,10 +69,12 @@ public static class CombatActions
 
         if (skill.keyStat == KeyStat.MA)
         {
+            Debug.Log("magicalAttack: " + magicalAttack + "  potency: " + skill.potency);
             damage = magicalAttack * skill.potency;
         }
         else if (skill.keyStat == KeyStat.PA)
         {
+            Debug.Log("physicalAttack: " + physicalAttack + "  potency: " + skill.potency);
             damage = physicalAttack * skill.potency;
         }
         else if (skill.keyStat == KeyStat.WPN)
@@ -89,7 +92,7 @@ public static class CombatActions
         {
             Debug.Log("BUG: No damage formula set for skill.");
         }
-
+        Debug.Log(actingUnitStats.unitName + " uses " + skill);
         targetStats.TakeDamage(damage);
     }
 }

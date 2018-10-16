@@ -16,6 +16,8 @@ public class TacticsAct : MonoBehaviour
 
     protected bool actAvailable = true;
 
+    private ActiveSkill currentSkill;
+
     protected float rangeMax;
     protected float rangeMin;
     protected float vert;
@@ -34,6 +36,10 @@ public class TacticsAct : MonoBehaviour
         //halfHeight = GetComponent<Collider>().bounds.extents.y;
     }
 
+    public void SetCurrentSkill(ActiveSkill skill){
+        currentSkill = skill;
+    }
+
     public void SetStartingTile()
     {
         startingTile = TileManager.GetUnitTile(gameObject);
@@ -46,7 +52,7 @@ public class TacticsAct : MonoBehaviour
         targetTile.target = true;
     }
 
-    public void Act(ActiveSkill skill)
+    public void Act()
     {
         RaycastHit hit;
 
@@ -56,13 +62,13 @@ public class TacticsAct : MonoBehaviour
             UnitStats targetStats = hit.transform.gameObject.GetComponent<UnitStats>();
             if (targetStats != null)
             {
-                if (skill == null)
+                if (currentSkill == null)
                 {
                     CombatActions.Attack(gameObject, targetStats);
                 }
                 else
                 {
-                    CombatActions.UseSkill(gameObject, targetStats, skill);
+                    CombatActions.UseSkill(gameObject, targetStats, currentSkill);
                 }
             }
 
@@ -81,9 +87,9 @@ public class TacticsAct : MonoBehaviour
 
     }
 
-    public void FindSelectableTiles(ActiveSkill skill)
+    public void FindSelectableTiles()
     {
-        if (skill == null)
+        if (currentSkill == null)
         {
             //consider getting stats directly from weapon in future
             rangeMax = unitStats.atkRangeMax;
@@ -92,9 +98,9 @@ public class TacticsAct : MonoBehaviour
         }
         else
         {
-            rangeMax = skill.rangeMax;
-            rangeMin = skill.rangeMin;
-            vert = skill.vert;
+            rangeMax = currentSkill.rangeMax;
+            rangeMin = currentSkill.rangeMin;
+            vert = currentSkill.vert;
             //TODO: pattern, spread
         }
         Tile unitTile = TileManager.GetUnitTile(gameObject);

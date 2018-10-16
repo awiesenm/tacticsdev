@@ -17,9 +17,8 @@ MonoBehaviour:
   description: 
   icon: {fileID: 0}
   rare: 0
-  skills:
+  activeSkills:
   - {fileID: 11400000, guid: c90ce8e781323664fa635034de751558, type: 2}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: c90ce8e781323664fa635034de751558, type: 2}
+  - {fileID: 11400000, guid: c90ce8e781323664fa635034de751558, type: 2}
+  - {fileID: 11400000, guid: c90ce8e781323664fa635034de751558, type: 2}

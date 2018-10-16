@@ -52,6 +52,7 @@ public class UnitStats : MonoBehaviour
     void Awake()
     {
         currentHP = maxHP;
+        currentMP = maxMP;
     }
 
     void Start()

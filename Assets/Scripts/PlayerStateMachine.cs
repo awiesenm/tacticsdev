@@ -74,8 +74,7 @@ public class PlayerStateMachine : UnitStateMachine
                     }
                     else
                     {
-                        //TODO: skill = desired skill, pass skill to methods
-                        TA.FindSelectableTiles(null); //null = ATTACK command
+                        TA.FindSelectableTiles();
                         //TODO: repurpose to controller
                         CheckMouse();
                         CheckBack();
@@ -85,7 +84,7 @@ public class PlayerStateMachine : UnitStateMachine
             case (TurnState.ACTING):
                 {
                     //TODO: skill = desired skill, pass skill to methods
-                    TA.Act(null); //null = ATTACK command
+                    TA.Act(); //null = ATTACK command
                     break;
                 }
             case (TurnState.ACTED):
@@ -154,8 +153,8 @@ public class PlayerStateMachine : UnitStateMachine
             else
             {
                 //TODO: optimize
-                UIManager.HideCanvasGroup(GameObject.Find("Skillset1Panel").GetComponent<CanvasGroup>());
-                UIManager.HideCanvasGroup(GameObject.Find("Skillset2Panel").GetComponent<CanvasGroup>());
+                // UIManager.HideCanvasGroup(GameObject.Find("Skillset1Panel").GetComponent<CanvasGroup>());
+                // UIManager.HideCanvasGroup(GameObject.Find("Skillset2Panel").GetComponent<CanvasGroup>());
                 UIManager.HideCanvasGroup(GameObject.Find("ActPanel").GetComponent<CanvasGroup>());
                 UIManager.ShowCanvasGroup(GameObject.Find("MainActionPanel").GetComponent<CanvasGroup>());
             }

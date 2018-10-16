@@ -18,7 +18,7 @@ public class UIManager : MonoBehaviour
         mainActionCG = GameObject.Find("MainActionPanel").GetComponent<CanvasGroup>();
         actCG = GameObject.Find("ActPanel").GetComponent<CanvasGroup>();
         skillset1CG = GameObject.Find("Skillset1Panel").GetComponent<CanvasGroup>();
-        skillset2CG = GameObject.Find("Skillset2Panel").GetComponent<CanvasGroup>();
+        // skillset2CG = GameObject.Find("Skillset2Panel").GetComponent<CanvasGroup>();
         moveButtonCG = GameObject.Find("MoveButton").GetComponent<CanvasGroup>();
     }
 
@@ -39,8 +39,11 @@ public class UIManager : MonoBehaviour
     public void DisplayActionRange()
     {
         HideCanvasGroup(mainActionCG);
+
         activeUnit = BattleStateMachine.instance.activeUnit;
-        activeUnit.GetComponent<TacticsAct>().showRange = true;
+        TacticsAct TA = activeUnit.GetComponent<TacticsAct>();
+        TA.SetCurrentSkill(null);
+        TA.showRange = true;
         activeUnit.GetComponent<PlayerStateMachine>().currentState = PlayerStateMachine.TurnState.DISPLAYINGACTRANGE;
     }
 
@@ -50,7 +53,9 @@ public class UIManager : MonoBehaviour
         HideCanvasGroup(skillset2CG);
 
         activeUnit = BattleStateMachine.instance.activeUnit;
-        activeUnit.GetComponent<TacticsAct>().showRange = true;
+        TacticsAct TA = activeUnit.GetComponent<TacticsAct>();
+        TA.SetCurrentSkill(null);
+        TA.showRange = true;
         activeUnit.GetComponent<PlayerStateMachine>().currentState = PlayerStateMachine.TurnState.DISPLAYINGACTRANGE;
     }
 
@@ -87,13 +92,16 @@ public class UIManager : MonoBehaviour
             return;
         }
 
-        if (activeUnit.GetComponent<UnitManager>().job.skills[0] == null)
-            GameObject.Find("Skill1Text").GetComponent<Text>().text = null; //TODO: disable/hide button instead of hiding text
-        else GameObject.Find("Skill1Text").GetComponent<Text>().text = activeUnit.GetComponent<UnitManager>().job.skills[0].name;
+        ActionScrollList scrollList = GameObject.Find("Skillset1Panel").GetComponentInChildren<ActionScrollList>();
+        scrollList.AddButtons();
 
-        if (activeUnit.GetComponent<UnitManager>().job.skills[1] == null)
-            GameObject.Find("Skill2Text").GetComponent<Text>().text = null; //TODO: disable/hide button instead of hiding text
-        else GameObject.Find("Skill2Text").GetComponent<Text>().text = activeUnit.GetComponent<UnitManager>().job.skills[1].name;
+        //     if (activeUnit.GetComponent<UnitManager>().job.skills[0] == null)
+        //         GameObject.Find("Skill1Text").GetComponent<Text>().text = null; //TODO: disable/hide button instead of hiding text
+        //     else GameObject.Find("Skill1Text").GetComponent<Text>().text = activeUnit.GetComponent<UnitManager>().job.skills[0].name;
+
+        //     if (activeUnit.GetComponent<UnitManager>().job.skills[1] == null)
+        //         GameObject.Find("Skill2Text").GetComponent<Text>().text = null; //TODO: disable/hide button instead of hiding text
+        //     else GameObject.Find("Skill2Text").GetComponent<Text>().text = activeUnit.GetComponent<UnitManager>().job.skills[1].name;
     }
 
     public void DisplaySkillset2Panel()
@@ -108,13 +116,13 @@ public class UIManager : MonoBehaviour
             return;
         }
 
-        if (activeUnit.GetComponent<UnitManager>().subJob.skills[0] == null)
-            GameObject.Find("Skill3Text").GetComponent<Text>().text = null; //TODO: disable/hide button instead of hiding text
-        else GameObject.Find("Skill3Text").GetComponent<Text>().text = activeUnit.GetComponent<UnitManager>().subJob.skills[0].name;
+        // if (activeUnit.GetComponent<UnitManager>().subJob.skills[0] == null)
+        //     GameObject.Find("Skill3Text").GetComponent<Text>().text = null; //TODO: disable/hide button instead of hiding text
+        // else GameObject.Find("Skill3Text").GetComponent<Text>().text = activeUnit.GetComponent<UnitManager>().subJob.skills[0].name;
 
-        if (activeUnit.GetComponent<UnitManager>().subJob.skills[1] == null)
-            GameObject.Find("Skill4Text").GetComponent<Text>().text = null; //TODO: disable/hide button instead of hiding text
-        else GameObject.Find("Skill4Text").GetComponent<Text>().text = activeUnit.GetComponent<UnitManager>().subJob.skills[1].name;
+        // if (activeUnit.GetComponent<UnitManager>().subJob.skills[1] == null)
+        //     GameObject.Find("Skill4Text").GetComponent<Text>().text = null; //TODO: disable/hide button instead of hiding text
+        // else GameObject.Find("Skill4Text").GetComponent<Text>().text = activeUnit.GetComponent<UnitManager>().subJob.skills[1].name;
     }
 
     public void Wait()
@@ -140,9 +148,9 @@ public class UIManager : MonoBehaviour
         skillset1CG.blocksRaycasts = false;
         skillset1CG.interactable = false;
 
-        skillset2CG.alpha = 0;
-        skillset2CG.blocksRaycasts = false;
-        skillset2CG.interactable = false;
+        // skillset2CG.alpha = 0;
+        // skillset2CG.blocksRaycasts = false;
+        // skillset2CG.interactable = false;
     }
 
     static public void ShowCanvasGroup(CanvasGroup canvasGroup)
@@ -152,7 +160,7 @@ public class UIManager : MonoBehaviour
         canvasGroup.interactable = true;
     }
 
-    static public void HideCanvasGroup(CanvasGroup canvasGroup)
+    static public void HideCanvasGroup(CanvasGroup canvasGroup) //consider .SetActive(false)
     {
         canvasGroup.alpha = 0;
         canvasGroup.blocksRaycasts = false;

@@ -13,7 +13,7 @@ public class Job : ScriptableObject {
 	public Sprite icon = null;
     public bool rare;
 
-    public List<Skill> skills = new List<Skill>(5);
+    public List<ActiveSkill> activeSkills = new List<ActiveSkill>(5);
 
 	//Called when the item is selected 
 	public virtual void Assign(){
